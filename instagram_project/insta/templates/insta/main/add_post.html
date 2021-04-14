@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Helloworld</title>
+  </head>
+  <body>
+    <form  method="post"  enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form}}
+      <input type="submit" name="" value="Post">
+    </form>
+  </body>
+</html>

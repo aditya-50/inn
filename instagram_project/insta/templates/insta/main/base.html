@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+{% load static %}
+{% load my_extras %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/new.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/new2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/again.css' %}">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <!-- Just an image -->
+
+    <!-- <div class="container"> -->
+      <nav class="navbar navbar-light nopad fixed-top">
+        <div class="container">
+          <a class="navbar-brand left" href="{% url "insta:home_page" %}">
+            <img src="data:image/png;base64,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" alt="" width="100" height="45">
+          </a>
+        {% block damn %}
+
+        {% endblock %}
+
+        <div class="d-flex right-margin">
+          <a class="nav-link active leftpade" aria-current="page" href="{% url "insta:home_page" %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="22" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+              <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+            </svg>
+          </a>
+          <a class="nav-link active leftpade" aria-current="page" href="{% url "insta:inbox" %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="22" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+            </svg>
+          </a>
+          <a class="nav-link active leftpade" aria-current="page" href="{% url "insta:explore" %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="22" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+              <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+              <path d="M6.94 7.44l4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+            </svg>
+          </a>
+
+          <span class="nav-item">
+
+            <a class="nav-link leftpade" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              <svg  xmlns="http://www.w3.org/2000/svg" width="29" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+              </svg>
+            </a>
+            <ul class="dropdown-menu marg" style="" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                  {% for u in user|try %}
+                  <div class="row v">
+                    <p>
+                      {% if u.user and u.post %}
+                      <div class="col-md-2 ri">
+
+                        <img class="rou" src="{{u.user.display_picture.url}}" alt="">
+                      </div>
+                      <div class="col-md-8 li">
+                        <span class="small fs">{{u.user}} liked your post <span class="date space">{{u|dat}}</span></span>
+                      </div>
+                      <div class="col-md-2">
+                        <img class="sq" src="{{u.post.picture.url}}" alt="">
+                      </div>
+                      {% elif u.author %}
+                      <div class="col-md-2 ri">
+                        <img class="rou" src="{{u.author.display_picture.url}}" alt="">
+                      </div>
+                      <div class="col-md-8 li">
+                        <span class="small fs">{{u.author}} commented on your post <span class="date space">{{u.text}}  </span> <span class="date space">{{u|dat}}  </span></span>
+                      </div>
+                      <div class="col-md-2">
+                        <img class="sq" src="{{u.post.picture.url}}" alt="">
+                      </div>
+
+
+                      {% else %}
+                      <div class="col-md-2 ri">
+
+                        <img class="rou" src="{{u.display_picture.url}}" alt="">
+                      </div>
+                      <div class="col-md-7 li">
+                        <span class="small fs">{{u.user_name}} <span class="st">started following you</span></span>
+                      </div>
+                      <div class="col-md-3">
+                        {% if u in user.following.all %}
+                        <button type="button" class="btn btn-sm  btn-outline-secondary buto" name="button"><span class="w"><a href="">Following</a></span></button>
+                        {% else %}
+                          <button type="button" class="btn btn-sm  buto " style="width:77px;background:#3ca1e0;" name="button"><span class="w" ><a style="color:#ffffff;" href="{% url "insta:follow" pk=u.pk %}">Follow</a></span></button>
+                        {% endif %}
+                      </div>
+                      {% endif %}
+                    </p>
+
+                  </div>
+                  {% endfor %}
+
+                </div>
+
+
+              <!-- <li><a class="dropdown-item" href="{% url "insta:user_profile" pk=user.pk %}"></a></li>
+              <li><a class="dropdown-item" href="{% url "insta:saver" pk=user.pk %}">Saved</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url "logout" %}">Logout</a></li> -->
+            </ul>
+          </span>
+
+
+          <a href="{% url "insta:new_post" %}" style="margin-left:10px;" class="nav-link leftpade"  aria-current="page" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="24" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+            </a>
+          <span class="nav-item dropdown">
+
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              {% if user.display_picture|check %}
+                <img class="round" src="{{user.display_picture.url}}" alt="">
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="22" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg>
+              {% endif %}
+
+
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url "insta:user_profile" pk=user.pk %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url "insta:saver" pk=user.pk %}">Saved</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url "logout" %}">Logout</a></li>
+            </ul>
+          </span>
+
+
+          
+        </div>
+
+
+        </div>
+      </nav>
+
+    <div class="b">
+      {% block content %}
+
+      {% endblock %}
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+
+  </body>
+</html>
+</html>

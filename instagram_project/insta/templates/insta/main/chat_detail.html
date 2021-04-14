@@ -1,0 +1,141 @@
+{% extends "insta/main/base.html" %}
+{% block content %}
+{% load my_extras %}
+  <div class="row" style="margin-top:60px; height:500px;">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" style="background:white;">
+      <div class="row inb">
+        <div class="col-md-4">
+          <div class="row" style="padding:15px 10px; text-align:center; border-bottom:2px solid rgba(0,0,0,0.1);">
+            <p class="sm" style="font-size:17px; font-weight:600; margin:0;">{{user}}</p>
+            <!-- <form class="editer" method="get">
+              <label for="search">To:</label>
+              <input type="search" name="search" value="">
+            </form> -->
+          </div>
+          {% for chat in Inbox %}
+          <div class="row" style="padding:5px 10px 3px; text-align:center;">
+            <div class="col-md-3" style="padding-right:5px;">
+              <img src="{{chat.user.all|chat:user}}" class="round_" alt="">
+            </div>
+            <div class="col-md-6" style="text-align:left;padding-left:5px;">
+              <a href="{% url 'insta:chater' pk=chat|hh:user %}">
+                <p class="sm" style="font-size:17px; font-weight:600; margin:0; padding-top:8px; font-size:12px; opacity:0.9;">{{chat.user.all|cha:user}}</p>
+              </a>
+              <div class="row">
+                <div class="col-md-12">
+                  {% if chat.text %}
+                  <p class="sm" style="font-weight:600; font-size:12px; opacity:0.5;">{{chat.text|v}}</p>
+                  {% else %}
+                  <p class="sm" style="font-weight:600; font-size:12px; opacity:0.5;">Image</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <p style="font-weight:600; font-size:12px; opacity:0.9; padding-top:8px;">{{chat|dat}}</p>
+            </div>
+            <!-- <form class="editer" method="get">
+              <label for="search">To:</label>
+              <input type="search" name="search" value="">
+            </form> -->
+          </div>
+
+          {% endfor %}
+        </div>
+        <div class="col-md-8" style="height:500px;text-align:center; border-left:2px solid rgba(0,0,0,0.1);padding-right:0;padding-left:0;">
+          <div class="row" style="padding:15px 10px 10px; text-align:center; border-bottom:2px solid rgba(0,0,0,0.1)">
+            <div class="col-md-1" style="text-align:right; padding-right:0;">
+
+              <img src="{{main.display_picture.url}}" class="round" style="padding:0;" alt="">
+            </div>
+            <div class="col-md-11">
+              <p class="" style="text-align:left; font-size:12px;margin:0;">{{main.user_name}}<br>
+              {% if main.online %}
+                online
+              {% else %}
+              last seen {{main.last_login|date:"d M"}}  
+              {% endif %}
+            </p>
+            </div>
+          </div>
+          <div class="" style="height:375px; overflow:auto;overflow-x:hidden;padding:15px;">
+            {% for c in chats %}
+              {% if user == c.sender %}
+              <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6" style="margin-top:16px;font-size:12px;text-align:right; ">
+
+                  {% if c.text %}
+                  {% if c.text|length %}
+                  <p class="" style="margin:0;background:#e6eaed; padding:13px 19px;border-radius:7%;text-align:left;">{{c.text}}</p>
+
+                  {% else %}
+                  <p class="" style="margin:0; padding:10px; padding-right:0;"><span style="text-align:left; background:#e6eaed; padding:13px 19px;border-radius:10%;">{{c.text}}</span></p>
+
+                  {% endif %}
+                  {% else %}
+                  <img src="{{c.post.picture.url}}" style="height:230px; width:250px; padding:10px;" alt="">
+                  {% endif %}
+                </div>
+              </div>
+              {% else %}
+              <div class="row">
+                <div class="col-md-6" style="margin-top:16px;font-size:12px;text-align:left; ">
+                  {% if c.text %}
+                  {% if c.text|length %}
+                  <p class="" style="margin:0; padding:13px 19px;padding-left:0;border:1px solid #e6eaed; text-align:left; background:#ffffff; padding:13px 19px;border-radius:7%;">{{c.text}}</p>
+
+                  {% else %}
+                  <p class="" style="margin:0; padding:10px;padding-left:0;"><span style="border:1px solid #e6eaed; text-align:left; background:#ffffff; padding:13px 19px;border-radius:10%;">{{c.text}}</span></p>
+
+                  {% endif %}
+                  {% else %}
+                  <img src="{{c.post.picture.url}}" style="height:230px; width:250px; padding:10px;" alt="">
+                  {% endif %}
+                  
+                  
+                  
+                  {% if c.text %}
+                  {% else %}
+                  <img src="{{c.post.picture.url}}" style="height:230px; width:250px; padding:10px;" alt="">
+                  {% endif %}
+                </div>
+                <div class="col-md-6"></div>
+              </div>
+
+              {% endif %}
+            {% endfor %}
+          </div>
+          <form method="post" class="fg" style="margin-top:20px;">
+            {% csrf_token %}
+            <div class="rounded" style="">
+              {{form}}
+            </div>
+            <!-- <input type="submit" name="" value="submit"> -->
+          </form>
+
+            <!-- <form method="get" class="md" style="display:none;" >
+              <input type="search" name="search" value="" style="margin-top:20px; width:200px;">
+              <button type="submit" class="btn "  name="button"><span style="font-size:13px; color:blue;">Next</span></button>
+            </form> -->
+
+        </div>
+
+
+
+      </div>
+    </div>
+
+    <div class="col-md-2"></div>
+
+  </div>
+
+  <!-- <script type="text/javascript">
+    bu=document.querySelector('.cdd')
+    form=document.querySelector('.md')
+    bu.addEventListener('click',function(){
+      form.style.display='block'
+    })
+  </script> -->
+{% endblock %}

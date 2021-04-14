@@ -1,0 +1,182 @@
+.nopad{
+  padding-top:0;
+  height:50px;
+}
+
+/* body{
+  background:#f7f5f5;
+} */
+
+body{
+  background:#f7f5f5;
+  /* background: black; */
+}
+
+
+a{
+  color:black;
+}
+nav{
+  background:#ffffff;
+  height:70px;
+}
+.fixed{
+  padding: 0;
+}
+
+.leftpad{
+  padding-right:8px;
+  padding-left:1px;
+  padding-top:9px;
+}
+.leftpade{
+  padding:7px;
+}
+
+
+.left{
+  margin-left:120px;
+}
+.small{
+  height:760px;
+  width:550px;
+}
+.right-margin{
+  margin-right:100px;
+}
+img.round{
+  height:30px;
+  width:30px;
+  border-radius:50%;
+}
+
+.size{
+  /* height:490px; */
+  /* width:568px; */
+  height:500px;
+  width:548px;
+}
+
+
+.lesspader{
+  padding:9px;
+  height:6px;
+  padding-bottom:3px;
+}
+.lesspader h6{
+  margin: 0;
+}
+.heighter{
+  height:250px;
+  width:289px;
+}
+.space{
+  height:35px;
+}
+.down{
+  margin-top:65px;
+}
+.round_big{
+  height:45px;
+  width:45px;
+  border-radius:50%;
+
+}
+.round_{
+  height:40px;
+  width:40px;
+  border-radius:50%;
+
+}
+.rounder{
+  height:45px;
+  width:45px;
+  border-radius:50%;
+}
+span{
+  width:30px;
+}
+.sme{
+  font-size:12px;
+}
+.s{
+  font-size:14px;
+}
+.space{
+  margin-left:9px;
+}
+.pa{
+  padding:0px;
+}
+.link{
+  /* color:blue; */
+  font-size:12px;
+  font-weight:bold;
+  color:#48d8e8;
+  text-decoration: none;
+}
+.fq{
+  position:fixed;
+  margin-left:800px;
+}
+.big_space{
+  /* padding-left:120px; */
+}
+.l{
+  padding-left:0;
+  font-size:13px;
+}
+.r{
+  text-align:center;
+  padding-right:3px;
+}
+.adjust{
+  height:39px;
+  width:39px;
+  border-width:2px;
+  border-style: solid;
+  padding:2px;
+  border-color:purple;
+  border-radius:50%;
+}
+
+.flex{
+  display:flex;
+  text-decoration: none;
+  list-style:none;
+  padding-left:1px;
+  margin-bottom:0;
+}
+.pf{
+  padding-top:2px;
+  /* padding-left:7px; */
+}
+.large_space{
+  /* text-align: left; */
+  margin-left:370px;
+}
+.body_card{
+  width:550px;
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Titillium Web', sans-serif; */
+  font-size:13px;
+}
+.card-image{
+  height:500px;
+}
+.lefter{
+  margin-left:380px;
+}
+.rounde{
+  width:50px;
+  height: 50px;
+  border-radius:100%;
+}
+.g{
+  font-size:1px;
+}
+.nopa{
+  padding:1px;
+  
+}

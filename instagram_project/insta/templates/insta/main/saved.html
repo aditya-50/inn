@@ -1,0 +1,103 @@
+{% extends "insta/main/base.html" %}
+
+{% block content %}
+{% load my_extras %}
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-3 align-left">
+          <img class="big_round" src="{{User.display_picture.url}}" alt="">
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-8 margin">
+          <p class="fad"><span class="fo">{{User.user_name}}</span>
+            {% if User == user %}
+              <button type="button"  class="btn btn-sm  btn-outline-secondary buto" name="button">Edit Account</button>
+              <span class="space"></span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-gear-wide" viewBox="0 0 16 16">
+                <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0  1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z"/>
+              </svg>
+            {% elif User in user.following.all %}
+            <button type="button" class="btn-md btn c j" name="button"><span class="w"><a href="{% url "insta:unfollow" pk=User.pk %}">Unfollow</a></span></button>
+            <button class="btn btn-sm c" type="button" name="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+              </svg>
+            </button>
+
+            {% else %}
+              <button type="button" class="btn btn-lg c" name="button"><span class="w"><a href="{% url "insta:follow" pk=User.pk %}">Follow</a></span></button>
+              <button class="btn btn-sm c" type="button" name="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                  <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                </svg>
+              </button>
+            {% endif %}
+          </p>
+          <div class="row">
+            <div class="col-md-12">
+              <a  class="spacer"  href="#"><span class="bol">{{p}}</span> posts</a>
+              <a  class="spacer"  href="#">
+                <span class="bol">{{User.following.count}}</span> following
+
+              </a>
+              <a  class="spacer" href="#">
+                <span class="bol">{{User.followers.count}}</span> followers
+              </a>
+            </div>
+          </div>
+          <br>
+          <p class="f">{{User.full_name}}</p>
+          <p class="">{{User.about}}</p>
+        </div>
+
+
+
+        <div class="col-md-2"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+
+      <hr class="a">
+      <div class="row">
+        <ul class="nav justify-content-center naver">
+          <li class="nav-item">
+            <a class="nav-link active fae edit" href="{% url "insta:user_profile" pk=user.pk %}">POSTS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link edit  dark" href="{% url "insta:saver" pk=user.pk %}">SAVED</a>
+          </li>
+
+        </ul>
+        <div class="col-md-12">
+          <div class="row">
+          {% for post in posts %}
+            {% if forloop.counter|mod %}
+              <div class="space">
+
+              </div>
+            {% endif %}
+            <div class="col-md-4 g q">
+              <img src="{{post.picture.url}}" class="img-fluid heighter" alt="">
+            </div>
+          {% endfor %}
+
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="col-md-2"></div>
+  </div>
+  <br>
+  <br>
+{% endblock %}
